@@ -1,13 +1,19 @@
 # Create streamlit component
 
+Install package to execute everywhere
+
+``` bash
+pip install create_stc
+```
+
 Default:
 
 ``` bash
-python create_streamlit_component.py
+create_stc
 ```
 
 Optional component name:
 
 ``` bash
-python create_streamlit_component.py new_comp
+create_stc new_comp
 ```
