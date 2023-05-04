@@ -1,6 +1,7 @@
 import sys
 import os
 from shutil import copytree, ignore_patterns
+import pkg_resources
 
 
 def replace_component_name(file_path, component_name):
@@ -15,7 +16,7 @@ def component_name_with_dash(component_name):
 	return component_name.replace("_", "-", 1)
 
 
-def main():
+def run():
 	args = sys.argv[1:]
 	component_name = "my_component"
 	if len(args) == 0:
@@ -27,7 +28,7 @@ def main():
 
 	print(f"Scaffolding project in {os.path.abspath(f'./{component_name}')}...")
 
-	template_folder = "./template"
+	template_folder = pkg_resources.resource_filename(__name__, "template")
 	new_folder = f"./{component_name}"
 	copytree(template_folder, new_folder, ignore=ignore_patterns("node_modules", "package-lock.json", ".eslintcache", "build", "dist", "*.egg-info"))
 
@@ -51,7 +52,3 @@ def main():
 	print("Open a new terminal and run:")
 	print(f" cd {new_folder}")
 	print(" streamlit run main.py")
-
-
-if __name__ == "__main__":
-	main()
